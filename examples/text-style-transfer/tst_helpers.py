@@ -58,6 +58,8 @@ def load_text_style_transfer_test_data(config: "DictConfig"):
 style_classifier_dict = {
     ('yelp', None, 'train'): './style_classifiers/yelp-bert-base-uncased-train/',
     ('yelp', None, 'test'): './style_classifiers/yelp-bert-base-uncased-test/',
+    ('siop', None, 'train'): './classification/runs/train_classifier/20230225-014237',
+    ('siop', None, 'test'): './classification/runs/train_classifier/20230225-014237',
     ('shakespeare', 0, 'train'): './style_classifiers/shakespeare-bert-base-uncased-train-100-0/',
     ('shakespeare', 1, 'train'): './style_classifiers/shakespeare-bert-base-uncased-train-100-1/',
     ('shakespeare', 2, 'train'): './style_classifiers/shakespeare-bert-base-uncased-train-100-2/',

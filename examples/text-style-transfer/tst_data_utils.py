@@ -31,7 +31,7 @@ def load_text_style_transfer_dataset(
     max_length: Optional[int],
     max_length_tokenizer: Optional[str]
 ) -> Tuple[List[str]]:
-    assert dataset in ['yelp', 'shakespeare']
+    assert dataset in ['yelp', 'shakespeare', 'siop']
     assert label in [0, 1]
     assert split in ['train', 'dev', 'test', 'ref']
 
@@ -47,7 +47,18 @@ def load_text_style_transfer_dataset(
         full_filepath = os.path.join(base_path, filepath)
         df = pd.read_csv(full_filepath, sep='\t')
         sentences = df.query(f'label == {label}').text.tolist()
-
+    
+    elif dataset == 'siop':
+        if label == 1:
+            filepath = f'{dataset}/{split}_positive.txt'
+        elif label == 0:
+            filepath = f'{dataset}/{split}_negative.txt'
+        else:
+            raise
+        full_filepath = os.path.join(base_path, filepath)
+        with open(full_filepath, 'r+') as f:
+            sentences = [line.strip() for line in f ]
+    
     # Option to keep only certain number of examples
     if max_size is not None:
         sentences = sentences[:max_size]
